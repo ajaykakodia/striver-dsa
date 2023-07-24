@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/ajaykakodia/striver-dsa/array"
+)
 
 /*
 Notes to follow along:
@@ -26,5 +30,8 @@ func main() {
 	//basicHashing()
 
 	// step 2
-	sorting()
+	// sorting()
+
+	// step 3
+	array.ArrayProblems()
 }
