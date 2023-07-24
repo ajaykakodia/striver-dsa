@@ -1,5 +1,49 @@
 package main
 
+import "fmt"
+
+func sorting() {
+	arr := []int{45, 65, 34, 23, 56, 33, 4, 2, 1}
+	fmt.Printf("Array before selection sorting: %v\n", arr)
+	selectionSort(arr)
+	fmt.Printf("Array after selection sorting: %v\n", arr)
+
+	arr = []int{45, 65, 34, 23, 56, 33, 4, 2, 1}
+
+	fmt.Printf("Array before bubble sorting: %v\n", arr)
+	bubbleSorting(arr)
+	fmt.Printf("Array after bubble sorting: %v\n", arr)
+
+	arr = []int{45, 65, 34, 23, 56, 33, 4, 2, 1}
+
+	fmt.Printf("Array before recursive bubble sorting: %v\n", arr)
+	bubbleSortR(arr)
+	fmt.Printf("Array after recursive bubble sorting: %v\n", arr)
+
+	arr = []int{45, 65, 34, 23, 56, 31, 4, 2, 1}
+
+	fmt.Printf("Array before insertion sorting: %v\n", arr)
+	insertionSort(arr)
+	fmt.Printf("Array after insertion sorting: %v\n", arr)
+
+	arr = []int{45, 65, 34, 23, 56, 31, 4, 2, 1}
+
+	fmt.Printf("Array before recursive insertion sorting: %v\n", arr)
+	insertionSortR(arr)
+	fmt.Printf("Array after recursive insertion sorting: %v\n", arr)
+
+	arr = []int{45, 65, 34, 23, 56, 31, 4, 2, 1}
+
+	fmt.Printf("Array before merge sorting: %v\n", arr)
+	fmt.Printf("Array after merge sorting: %v\n", mergeSorting(arr))
+
+	arr = []int{45, 65, 34, 23, 56, 31, 4, 2, 1}
+
+	fmt.Printf("Array before quick sorting: %v\n", arr)
+	quickSorting(arr)
+	fmt.Printf("Array after quick sorting: %v\n", arr)
+}
+
 func selectionSort(arr []int) {
 	minIndex := 0
 	l := len(arr)
@@ -33,6 +77,20 @@ func bubbleSorting(arr []int) {
 	}
 }
 
+// recursive bubble sort
+func bubbleSortR(arr []int) {
+	if len(arr) <= 1 {
+		return
+	}
+	// doing sorting from last array
+	bubbleSortR(arr[1:])
+	for i := 0; i < len(arr)-1; i++ {
+		if arr[i] > arr[i+1] {
+			arr[i], arr[i+1] = arr[i+1], arr[i]
+		}
+	}
+}
+
 func insertionSort(arr []int) {
 	l := len(arr)
 	var elem int
@@ -52,6 +110,41 @@ func insertionSort(arr []int) {
 			arr[insertPosition] = elem
 		}
 	}
+}
+
+// recursive insertion sort
+func insertionSortR(arr []int) {
+	l := len(arr)
+	if l <= 1 {
+		return
+	}
+	// doing sorting from last array
+	insertionSortR(arr[1:])
+	ele, insertPosition := arr[l-1], -1
+
+	for i := l - 2; i >= 0; i-- {
+		if arr[i] > ele {
+			arr[i+1] = arr[i]
+			insertPosition = i
+			continue
+		}
+		break
+	}
+	if insertPosition != -1 {
+		arr[insertPosition] = ele
+	}
+}
+
+func quickSorting(arr []int) {
+	l := len(arr)
+
+	if l <= 1 {
+		return
+	}
+
+	pivotIndex := getPivotIndex(arr)
+	quickSorting(arr[:pivotIndex])
+	quickSorting(arr[pivotIndex+1:])
 }
 
 func mergeSorting(arr []int) []int {
@@ -90,4 +183,40 @@ func mergeTwoSortedArray(arr1, arr2 []int) []int {
 	}
 
 	return arr
+}
+
+func getPivotIndex(arr []int) int {
+	l := len(arr)
+	if l <= 1 {
+		return 0
+	}
+
+	ele := arr[0]
+	index := 0
+
+	for i := 1; i < l; i++ {
+		if arr[i] < ele {
+			index = index + 1
+		}
+	}
+
+	arr[index], arr[0] = arr[0], arr[index]
+
+	i, j := 0, l-1
+
+	for i < j {
+		for arr[i] < ele {
+			i++
+		}
+		for arr[j] > ele {
+			j--
+		}
+		if i < j {
+			arr[i], arr[j] = arr[j], arr[i]
+			i++
+			j--
+		}
+	}
+
+	return index
 }
