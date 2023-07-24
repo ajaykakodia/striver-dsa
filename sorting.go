@@ -53,3 +53,41 @@ func insertionSort(arr []int) {
 		}
 	}
 }
+
+func mergeSorting(arr []int) []int {
+	if len(arr) == 1 {
+		return arr
+	}
+
+	mid := len(arr) / 2
+	arr1 := mergeSorting(arr[0:mid])
+	arr2 := mergeSorting(arr[mid:])
+	return mergeTwoSortedArray(arr1, arr2)
+}
+
+func mergeTwoSortedArray(arr1, arr2 []int) []int {
+	arr := []int{}
+
+	l1, l2 := len(arr1), len(arr2)
+	i, j := 0, 0
+
+	for i < l1 && j < l2 {
+		if arr1[i] < arr2[j] {
+			arr = append(arr, arr1[i])
+			i++
+		} else {
+			arr = append(arr, arr2[j])
+			j++
+		}
+	}
+
+	if i < l1 {
+		arr = append(arr, arr1[i:]...)
+	}
+
+	if j < l2 {
+		arr = append(arr, arr2[j:]...)
+	}
+
+	return arr
+}

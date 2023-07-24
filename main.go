@@ -43,4 +43,9 @@ func main() {
 	insertionSort(arr)
 	fmt.Printf("Array after insertion sorting: %v\n", arr)
 
+	arr = []int{45, 65, 34, 23, 56, 31, 4, 2, 1}
+
+	fmt.Printf("Array before merge sorting: %v\n", arr)
+	fmt.Printf("Array after merge sorting: %v\n", mergeSorting(arr))
+
 }
