@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+func basicHashing() {
+	countFrequency([]int{10, 5, 10, 15, 10, 5})
+	fmt.Println(highAndLowFrequency([]int{10, 5, 10, 15, 10, 5}))
+	fmt.Println(highAndLowFrequency([]int{2, 2, 3, 4, 4, 2}))
+}
+
 func countFrequency(arr []int) {
 	m := make(map[int]int)
 

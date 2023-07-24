@@ -23,8 +23,6 @@ func main() {
 	//basicRecursion()
 
 	// step 1.3
-	countFrequency([]int{10, 5, 10, 15, 10, 5})
-	fmt.Println(highAndLowFrequency([]int{10, 5, 10, 15, 10, 5}))
-	fmt.Println(highAndLowFrequency([]int{2, 2, 3, 4, 4, 2}))
+	basicHashing()
 
 }
