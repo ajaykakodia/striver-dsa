@@ -1,2 +1,2 @@
 # striver-dsa
-This repo is for striver's SDE DSA sheet
+This repo is for Striver's A2Z DSA Sheet
