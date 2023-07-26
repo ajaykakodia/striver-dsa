@@ -71,4 +71,35 @@ func ArrayProblems() {
 	fmt.Printf("Union of Array, %v and %v is: %v\n", arr1, arr2, unionOfTwoArrayBF(arr1, arr2))
 	fmt.Printf("Union of Array with Space Solution, %v and %v is: %v\n", arr1, arr2, unionOfTwoArrayWithSpace(arr1, arr2))
 	fmt.Printf("Union of Two Sorted Array, %v and %v is: %v\n", arr1, arr2, unionOfTwoSortedArray(arr1, arr2))
+
+	arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 10}
+	fmt.Printf("Missing Number in Array: %v is : %d\n", arr, findMissingNumber1(arr))
+
+	arr = []int{1, 2, 3, 4, 5}
+	fmt.Printf("Missing Number in Array: %v is : %d\n", arr, findMissingNumber(arr))
+
+	arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 10}
+	fmt.Printf("Missing Number in Array: %v is : %d\n", arr, findMissingNumberXOR(arr))
+
+	arr = []int{1, 1, 0, 1, 1, 1, 0, 1}
+	fmt.Printf("Max Ones in Array: %v is : %d\n", arr, countMaxConsecutiveOns(arr))
+
+	arr = []int{1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1}
+	fmt.Printf("Max Ones in Array: %v is : %d\n", arr, countMaxConsecutiveOns(arr))
+
+	arr = []int{0, 0, 0, 0}
+	fmt.Printf("Max Ones in Array: %v is : %d\n", arr, countMaxConsecutiveOns(arr))
+
+	arr = []int{4, 1, 2, 1, 2}
+	fmt.Printf("Unique Number in Array: %v is : %d\n", arr, numberThatAppearsOnceWithSpace(arr))
+
+	arr = []int{4, 1, 2, 1, 2, 4, 5, 6, 7, 7, 6}
+	fmt.Printf("Unique Number in Array: %v is : %d\n", arr, numberThatAppearsOnceWithXOR(arr))
+
+	arr = []int{4, 1, 2, 1, 2, 4, 5, 6, 7, 7, 6}
+	fmt.Printf("Longest SubArray in Array: %v is : %d\n", arr, longestSubArrayWithSum(arr, 11))
+
+	arr = []int{4, 1, 2, 1, 2, 4, 5, 6, 7, 7, 6}
+	fmt.Printf("Longest SubArray in Array: %v is : %d\n", arr, longestSubArrayWithSum(arr, 12))
+
 }

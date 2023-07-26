@@ -238,3 +238,143 @@ func unionOfTwoSortedArray(arr1, arr2 []int) []int {
 
 	return arr
 }
+
+/*
+Problem Statement: Given an integer N and an array of size N-1 containing N-1 numbers between 1 to N.
+Find the number(between 1 to N), that is not present in the given array.
+*/
+func findMissingNumber1(arr []int) int {
+	missingNumber := 1
+
+	for _, v := range arr {
+		if missingNumber != v {
+			return missingNumber
+		}
+		missingNumber++
+	}
+
+	return missingNumber
+}
+
+func findMissingNumber(arr []int) int {
+	l := len(arr)
+	sum := (l + 1) * (l + 2) / 2
+	arrSum := 0
+	for i := 0; i < l; i++ {
+		arrSum += arr[i]
+	}
+	return sum - arrSum
+}
+
+func findMissingNumberXOR(arr []int) int {
+	missingNumber := 0
+	l := len(arr)
+	for i := 1; i <= l+1; i++ {
+		missingNumber = missingNumber ^ i
+	}
+	for i := 0; i < l; i++ {
+		missingNumber = missingNumber ^ arr[i]
+	}
+	return missingNumber
+}
+
+/*
+Problem Statement: Given an array that contains only 1 and 0 return the count of maximum consecutive ones in the array.
+*/
+func countMaxConsecutiveOns(arr []int) int {
+	maxOnes := 0
+	count := 0
+
+	for _, v := range arr {
+		if v == 1 {
+			count++
+			continue
+		}
+		if count > maxOnes {
+			maxOnes = count
+		}
+		count = 0
+	}
+
+	if count > maxOnes {
+		maxOnes = count
+	}
+	return maxOnes
+}
+
+/*
+Find the number that appears once, and the other numbers twice
+Problem Statement: Given a non-empty array of integers arr, every element appears twice except for one. Find that single one.
+*/
+func numberThatAppearsOnceWithSpace(arr []int) int {
+	m := make(map[int]bool)
+
+	for _, v := range arr {
+		m[v] = !m[v]
+	}
+
+	for k, v := range m {
+		if v {
+			return k
+		}
+	}
+	return -1
+}
+
+func numberThatAppearsOnceWithXOR(arr []int) int {
+	num := 0
+
+	for _, v := range arr {
+		num = num ^ v
+	}
+
+	return num
+}
+
+/*
+Longest SubArray with given Sum K(Positives)
+Problem Statement: Given an array and a sum k, we need to print the length of the longest sub-array that sums to k.
+*/
+func longestSubArrayWithSum(arr []int, sum int) int {
+	ans, count, latestSum, initialIndex := 0, 0, 0, 0
+
+	for i := 0; i < len(arr); i++ {
+		latestSum = latestSum + arr[i]
+		if latestSum < sum {
+			count++
+			continue
+		}
+		if latestSum > sum {
+			for initialIndex <= i {
+				latestSum = latestSum - arr[initialIndex]
+				if latestSum > sum {
+					initialIndex++
+					count--
+					continue
+				}
+
+				if latestSum == sum {
+					if count > ans {
+						ans = count
+					}
+					initialIndex = i + 1
+					latestSum = 0
+					count = 0
+					break
+				}
+				initialIndex++
+				break
+			}
+			continue
+		}
+
+		if count > ans {
+			ans = count
+		}
+		initialIndex = i + 1
+		latestSum = 0
+		count = 0
+	}
+
+	return ans
+}
