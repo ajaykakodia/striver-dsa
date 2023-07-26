@@ -31,4 +31,8 @@ func ArrayProblems() {
 
 	fmt.Printf("Array: %v after duplicate removal = %v\n", []int{1, 1}, removeDuplicateForSortedArray(arr))
 
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	leftRotateArrayByOneBF(arr)
+	fmt.Printf("Array: %v after left rotate by one = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, arr)
+
 }

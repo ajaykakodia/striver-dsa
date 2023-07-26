@@ -78,3 +78,11 @@ func removeDuplicateForSortedArray(arr []int) []int {
 
 	return arr[:replaceWith]
 }
+
+func leftRotateArrayByOneBF(arr []int) {
+	temp := arr[0]
+	for i := 1; i < len(arr); i++ {
+		arr[i-1] = arr[i]
+	}
+	arr[len(arr)-1] = temp
+}
