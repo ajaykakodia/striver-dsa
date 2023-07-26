@@ -1,6 +1,9 @@
 package array
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 func largestElementInArray(arr []int) int {
 	lElem := arr[0]
@@ -123,5 +126,115 @@ func rotateArrayByKElementGoLang(arr []int, position int, place string) []int {
 	}
 	l := len(arr)
 	arr = append(arr[l-position:], arr[:l-position]...)
+	return arr
+}
+
+func moveZeroToEndInArray(arr []int) {
+	l := len(arr)
+	endZeroPos := l - 1
+	startPosition := 0
+
+	for startPosition < endZeroPos {
+
+		for startPosition < l && arr[startPosition] != 0 {
+			startPosition++
+		}
+		for endZeroPos > -1 && arr[endZeroPos] == 0 {
+			endZeroPos--
+		}
+		if startPosition < endZeroPos {
+			arr[startPosition], arr[endZeroPos] = arr[endZeroPos], arr[startPosition]
+			startPosition++
+			endZeroPos--
+		}
+	}
+}
+
+func linearSearch(arr []int, item int) int {
+	for i, v := range arr {
+		if v == item {
+			return i
+		}
+	}
+	return -1
+}
+
+func unionOfTwoArrayBF(arr1, arr2 []int) []int {
+	arr := []int{}
+
+	for _, v := range arr1 {
+		if linearSearch(arr, v) == -1 {
+			arr = append(arr, v)
+		}
+	}
+	for _, v := range arr2 {
+		if linearSearch(arr, v) == -1 {
+			arr = append(arr, v)
+		}
+	}
+
+	return arr
+}
+
+func unionOfTwoArrayWithSpace(arr1, arr2 []int) []int {
+
+	m := make(map[int]bool)
+
+	for _, v := range arr1 {
+		m[v] = true
+	}
+	for _, v := range arr2 {
+		m[v] = true
+	}
+
+	arr, i := make([]int, len(m)), 0
+	for k := range m {
+		arr[i] = k
+		i++
+	}
+	sort.Ints(arr)
+	return arr
+}
+
+func unionOfTwoSortedArray(arr1, arr2 []int) []int {
+
+	arr := []int{}
+	i, j, k := 0, 0, -1
+	la, lb := len(arr1), len(arr2)
+
+	for i < la && j < lb {
+		for i < la && arr1[i] < arr2[j] {
+			if k == -1 || arr[k] != arr1[i] {
+				arr = append(arr, arr1[i])
+				k++
+			}
+			i++
+		}
+
+		for i < la && j < lb && arr2[j] <= arr1[i] {
+			if k == -1 || arr[k] != arr2[j] {
+				arr = append(arr, arr2[j])
+				k++
+			}
+			j++
+		}
+	}
+
+	for i < la {
+		if k == -1 || arr[k] != arr1[i] {
+			arr = append(arr, arr1[i])
+			k++
+		}
+		i++
+	}
+
+	for j < lb {
+		if k == -1 || arr[k] != arr2[j] {
+			arr = append(arr, arr2[j])
+			k++
+		}
+		j++
+	}
+
 	return arr
 }
