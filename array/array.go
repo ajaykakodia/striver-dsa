@@ -35,4 +35,19 @@ func ArrayProblems() {
 	leftRotateArrayByOneBF(arr)
 	fmt.Printf("Array: %v after left rotate by one = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, arr)
 
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	fmt.Printf("Array: %v after left rotate by one = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, leftRotateArrayByOneGolang(arr))
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	rotateArrayByKElement(arr, 3, "left")
+	fmt.Printf("Array: %v after rotate by K element %d to %s position = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, 3, "left", arr)
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	rotateArrayByKElement(arr, 3, "right")
+	fmt.Printf("Array: %v after rotate by K element %d to %s position = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, 3, "right", arr)
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	fmt.Printf("Array: %v after rotate by K element %d to %s position = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, 3, "left", rotateArrayByKElementGoLang(arr, 3, "left"))
+
+	fmt.Printf("Array: %v after rotate by K element %d to %s position = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, 3, "right", rotateArrayByKElementGoLang(arr, 3, "right"))
 }

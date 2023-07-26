@@ -86,3 +86,42 @@ func leftRotateArrayByOneBF(arr []int) {
 	}
 	arr[len(arr)-1] = temp
 }
+
+func leftRotateArrayByOneGolang(arr []int) []int {
+	arr = append(arr[1:], arr[0])
+	return arr
+}
+
+func rotateArrayByKElement(arr []int, position int, place string) {
+	if place == "left" {
+		temp := make([]int, position)
+		for i := 0; i < position; i++ {
+			temp[i] = arr[i]
+		}
+		for i := 0; i < len(arr)-position; i++ {
+			arr[i] = arr[i+position]
+		}
+		for i := 0; i < len(temp); i++ {
+			arr[len(arr)-position+i] = temp[i]
+		}
+	} else {
+		temp := make([]int, position)
+		for i := 0; i < position; i++ {
+			temp[i] = arr[len(arr)-position+i]
+		}
+		for i := len(arr) - position - 1; i >= 0; i-- {
+			arr[i+position] = arr[i]
+		}
+		copy(arr, temp)
+	}
+}
+
+func rotateArrayByKElementGoLang(arr []int, position int, place string) []int {
+	if place == "left" {
+		arr = append(arr[position:], arr[:position]...)
+		return arr
+	}
+	l := len(arr)
+	arr = append(arr[l-position:], arr[:l-position]...)
+	return arr
+}
