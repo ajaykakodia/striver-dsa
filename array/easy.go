@@ -1,9 +1,138 @@
 package array
 
 import (
+	"fmt"
 	"math"
 	"sort"
 )
+
+func easy() {
+
+	arr := []int{8, 10, 5, 7, 9, 2, 20, 17, 25, 12, 13}
+	fmt.Printf("largest element in arr: %v is %d.\n", arr, largestElementInArray(arr))
+
+	arr = []int{8, 10, 5, 7, 9, 2, 20, 17, 25, 12, 13}
+	sl, ss := secondLargestAnd2ndSmallestElement(arr)
+	fmt.Printf("2nd largest element is %d and 2nd smallest element is %d in arr: %v.\n", sl, ss, arr)
+	arr = []int{1}
+	sl, ss = secondLargestAnd2ndSmallestElement(arr)
+	fmt.Printf("2nd largest element is %d and 2nd smallest element is %d in arr: %v.\n", sl, ss, arr)
+
+	arr = []int{8, 10, 5, 7, 9, 2, 20, 17, 25, 12, 13}
+	fmt.Printf("Array: %v is sorted = %v\n", arr, isArraySorted(arr))
+	arr = []int{2, 4, 6, 7, 8, 10}
+	fmt.Printf("Array: %v is sorted = %v\n", arr, isArraySorted(arr))
+
+	arr = []int{5, 7, 7, 9, 9, 9, 9, 11, 15, 17, 17, 18, 19, 25, 25}
+
+	fmt.Printf("Array: %v after duplicate removal = %v\n", []int{5, 7, 7, 9, 9, 9, 9, 11, 15, 17, 17, 18, 19, 25, 25}, removeDuplicateForSortedArray(arr))
+
+	arr1 := []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	fmt.Printf("Array: %v after duplicate removal = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, removeDuplicateForSortedArray(arr1))
+
+	arr = []int{1, 1}
+
+	fmt.Printf("Array: %v after duplicate removal = %v\n", []int{1, 1}, removeDuplicateForSortedArray(arr))
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	leftRotateArrayByOneBF(arr)
+	fmt.Printf("Array: %v after left rotate by one = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, arr)
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	fmt.Printf("Array: %v after left rotate by one = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, leftRotateArrayByOneGolang(arr))
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	rotateArrayByKElement(arr, 3, "left")
+	fmt.Printf("Array: %v after rotate by K element %d to %s position = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, 3, "left", arr)
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	rotateArrayByKElement(arr, 3, "right")
+	fmt.Printf("Array: %v after rotate by K element %d to %s position = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, 3, "right", arr)
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	fmt.Printf("Array: %v after rotate by K element %d to %s position = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, 3, "left", rotateArrayByKElementGoLang(arr, 3, "left"))
+
+	fmt.Printf("Array: %v after rotate by K element %d to %s position = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, 3, "right", rotateArrayByKElementGoLang(arr, 3, "right"))
+
+	arr = []int{1, 0, 2, 3, 0, 4, 0, 1}
+	moveZeroToEndInArray(arr)
+	fmt.Printf("Array: %v after moving all zeros in last = %v\n", []int{1, 0, 2, 3, 0, 4, 0, 1}, arr)
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	moveZeroToEndInArray(arr)
+	fmt.Printf("Array: %v after moving all zeros in last = %v\n", []int{5, 7, 9, 11, 15, 17, 18, 19, 25}, arr)
+	arr = []int{0, 0, 0, 0, 0}
+	moveZeroToEndInArray(arr)
+	fmt.Printf("Array: %v after moving all zeros in last = %v\n", []int{0, 0, 0, 0, 0}, arr)
+
+	arr = []int{5, 7, 9, 11, 15, 17, 18, 19, 25}
+	fmt.Printf("In Array: %v, %d present at position: %d\n", arr, 19, linearSearch(arr, 19))
+	fmt.Printf("In Array: %v, %d present at position: %d\n", arr, 27, linearSearch(arr, 27))
+
+	arr1 = []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	arr2 := []int{2, 3, 4, 4, 5, 11, 12}
+	fmt.Printf("Union of Array, %v and %v is: %v\n", arr1, arr2, unionOfTwoArrayBF(arr1, arr2))
+	fmt.Printf("Union of Array with Space Solution, %v and %v is: %v\n", arr1, arr2, unionOfTwoArrayWithSpace(arr1, arr2))
+	fmt.Printf("Union of Two Sorted Array, %v and %v is: %v\n", arr1, arr2, unionOfTwoSortedArray(arr1, arr2))
+
+	arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 10}
+	fmt.Printf("Missing Number in Array: %v is : %d\n", arr, findMissingNumber1(arr))
+
+	arr = []int{1, 2, 3, 4, 5}
+	fmt.Printf("Missing Number in Array: %v is : %d\n", arr, findMissingNumber(arr))
+
+	arr = []int{1, 2, 3, 4, 5, 6, 7, 8, 10}
+	fmt.Printf("Missing Number in Array: %v is : %d\n", arr, findMissingNumberXOR(arr))
+
+	arr = []int{1, 1, 0, 1, 1, 1, 0, 1}
+	fmt.Printf("Max Ones in Array: %v is : %d\n", arr, countMaxConsecutiveOns(arr))
+
+	arr = []int{1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1}
+	fmt.Printf("Max Ones in Array: %v is : %d\n", arr, countMaxConsecutiveOns(arr))
+
+	arr = []int{0, 0, 0, 0}
+	fmt.Printf("Max Ones in Array: %v is : %d\n", arr, countMaxConsecutiveOns(arr))
+
+	arr = []int{4, 1, 2, 1, 2}
+	fmt.Printf("Unique Number in Array: %v is : %d\n", arr, numberThatAppearsOnceWithSpace(arr))
+
+	arr = []int{4, 1, 2, 1, 2, 4, 5, 6, 7, 7, 6}
+	fmt.Printf("Unique Number in Array: %v is : %d\n", arr, numberThatAppearsOnceWithXOR(arr))
+
+	arr = []int{4, 1, 2, 1, 2, 4, 5, 6, 7, 7, 6}
+	fmt.Printf("Longest SubArray in Array: %v is : %d\n", arr, longestSubArrayWithSum(arr, 11))
+
+	arr = []int{4, 1, 2, 1, 2, 4, 5, 6, 7, 7, 6}
+	fmt.Printf("Longest SubArray in Array: %v is : %d\n", arr, longestSubArrayWithSum(arr, 12))
+
+	arr = []int{4, 1, 2, 1, 2, 4, 5, 6, 7, 7, 6}
+	fmt.Printf("Longest SubArray in Array - Two Pointer: %v is : %d\n", arr, longestSubArrayWithSumTP(arr, 11))
+
+	arr = []int{4, 1, 2, 1, 2, 4, 5, 6, 7, 7, 6}
+	fmt.Printf("Longest SubArray in Array - Two Pointer: %v is : %d\n", arr, longestSubArrayWithSumTP(arr, 12))
+
+	arr = []int{-1, 1, 1}
+	fmt.Printf("Longest SubArray in Array: %v is : %d\n", arr, longestSubArrayWithSum2(arr, 1))
+
+	arr = []int{2, 3, 5}
+	fmt.Printf("Longest SubArray in Array: %v is : %d\n", arr, longestSubArrayWithSum2(arr, 5))
+
+	arr = []int{2, 3, 5, -2, -3, 4}
+	fmt.Printf("Longest SubArray in Array: %v is : %d\n", arr, longestSubArrayWithSum2(arr, 5))
+
+	arr = []int{4, 1, 2, 1, 2, 4, 5, 6, 7, 7, 6}
+	fmt.Printf("Longest SubArray in Array - Hash Map: %v is : %d\n", arr, longestSubArrayWithSumHMap(arr, 12))
+
+	arr = []int{-1, 1, 1}
+	fmt.Printf("Longest SubArray in Array - Hash Map: %v is : %d\n", arr, longestSubArrayWithSumHMap(arr, 1))
+
+	arr = []int{2, 3, 5}
+	fmt.Printf("Longest SubArray in Array - Hash Map: %v is : %d\n", arr, longestSubArrayWithSumHMap(arr, 5))
+
+	arr = []int{2, 3, 5, -2, -3, 4}
+	fmt.Printf("Longest SubArray in Array - Hash Map: %v is : %d\n", arr, longestSubArrayWithSumHMap(arr, 5))
+
+}
 
 func largestElementInArray(arr []int) int {
 	lElem := arr[0]
@@ -374,6 +503,107 @@ func longestSubArrayWithSum(arr []int, sum int) int {
 		initialIndex = i + 1
 		latestSum = 0
 		count = 0
+	}
+
+	return ans
+}
+
+func longestSubArrayWithSumTP(arr []int, sum int) int {
+	ans, latestSum, initialIndex := 0, 0, 0
+
+	for i := 0; i < len(arr); i++ {
+		latestSum = latestSum + arr[i]
+		if latestSum < sum {
+			continue
+		}
+		if latestSum == sum {
+			if i-initialIndex > ans {
+				ans = i - initialIndex + 1
+			}
+			continue
+		}
+		for initialIndex <= i {
+			latestSum = latestSum - arr[initialIndex]
+			if latestSum == sum {
+				if i-initialIndex > ans {
+					ans = i - initialIndex
+				}
+				initialIndex++
+				break
+			}
+			initialIndex++
+			if latestSum < sum {
+				break
+			}
+		}
+
+	}
+
+	return ans
+}
+
+/*
+Longest SubArray with given Sum K(Positives and Negatives)
+Problem Statement: Given an array and a sum k, we need to print the length of the longest sub-array that sums to k.
+
+Example 1:
+Input Format: N = 3, k = 5, array[] = {2,3,5}
+Result: 2
+Explanation: The longest subarray with sum 5 is {2, 3}. And its length is 2.
+
+Example 2:
+Input Format: N = 3, k = 1, array[] = {-1, 1, 1}
+Result: 3
+Explanation: The longest subarray with sum 1 is {-1, 1, 1}. And its length is 3.
+*/
+func longestSubArrayWithSum2(arr []int, sum int) int {
+	ans, latestSum, j := 0, 0, 0
+
+	for i := 0; i < len(arr); i++ {
+		latestSum = latestSum + arr[i]
+
+		if latestSum == sum {
+			if i+1 > ans {
+				ans = i + 1
+			}
+			continue
+		}
+		j = 0
+		asum := latestSum
+		for j <= i {
+			asum = asum - arr[j]
+			if asum == sum {
+				if i-j+1 > ans {
+					ans = i - j + 1
+				}
+				break
+			}
+			j++
+		}
+	}
+
+	return ans
+}
+
+func longestSubArrayWithSumHMap(arr []int, sum int) int {
+	ans, latestSum, m := 0, 0, make(map[int]int)
+
+	for i := 0; i < len(arr); i++ {
+
+		latestSum = latestSum + arr[i]
+		if latestSum == sum {
+			ans = i + 1
+		}
+
+		if v, ok := m[latestSum-sum]; ok {
+			if i-v > ans {
+				ans = i - v
+			}
+		}
+
+		if _, ok := m[latestSum]; !ok {
+			m[latestSum] = i
+		}
 	}
 
 	return ans
