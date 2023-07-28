@@ -78,3 +78,59 @@ func twoSumProblemV2(arr []int, target int) []int {
 
 	return []int{-1, -1}
 }
+
+/*
+Problem Statement: Given an array consisting of only 0s, 1s, and 2s. Write a program to in-place sort the array without using inbuilt sort functions. ( Expected: Single pass-O(N) and constant space)
+
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+
+Input: nums = [2,0,1]
+Output: [0,1,2]
+
+Input: nums = [0]
+Output: [0]
+*/
+func sortArrayOf012s(arr []int) {
+	low, mid, high := 0, 0, len(arr)-1
+
+	for mid <= high {
+		if arr[mid] == 0 {
+			arr[mid], arr[low] = arr[low], arr[mid]
+			mid++
+			low++
+			continue
+		}
+		if arr[mid] == 1 {
+			mid++
+			continue
+		}
+		arr[mid], arr[high] = arr[high], arr[mid]
+		high--
+	}
+}
+
+func majorityElementInArray(arr []int) int {
+	count := 0
+	var ele *int
+
+	for _, v := range arr {
+		if ele == nil {
+			ele = &v
+			count++
+			continue
+		}
+
+		if *ele == v {
+			count++
+			continue
+		}
+		if count == 0 {
+			*ele = v
+			count++
+			continue
+		}
+		count--
+	}
+	return *ele
+}
