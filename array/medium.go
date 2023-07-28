@@ -1,6 +1,9 @@
 package array
 
-import "sort"
+import (
+	"math"
+	"sort"
+)
 
 /*
 Two Sum : Check if a pair with given sum exists in Array
@@ -15,15 +18,18 @@ Note: You are not allowed to use the same element twice. Example: If the target 
 Example 1:
 Input Format: N = 5, arr[] = {2,6,5,8,11}, target = 14
 Result: YES (for 1st variant)
-       [1, 3] (for 2nd variant)
+
+	[1, 3] (for 2nd variant)
+
 Explanation: arr[1] + arr[3] = 14. So, the answer is “YES” for the first variant and [1, 3] for 2nd variant.
 
 Example 2:
 Input Format: N = 5, arr[] = {2,6,5,8,11}, target = 15
 Result: NO (for 1st variant)
-	[-1, -1] (for 2nd variant)
-Explanation: There exist no such two numbers whose sum is equal to the target.
 
+	[-1, -1] (for 2nd variant)
+
+Explanation: There exist no such two numbers whose sum is equal to the target.
 */
 func twoSumProblemV1(arr []int, target int) bool {
 	m := make(map[int]int)
@@ -110,6 +116,28 @@ func sortArrayOf012s(arr []int) {
 	}
 }
 
+/*
+	Find the Majority Element that occurs more than N/2 times
+
+Problem Statement: Given an array of N integers, write a program to return an element that occurs more than N/2 times in the given array. You may consider that such an element always exists in the array.
+
+Example 1:
+Input Format: N = 3, nums[] = {3,2,3}
+Result: 3
+Explanation: When we just count the occurrences of each number and compare with half of the size of the array, you will get 3 for the above solution.
+
+Example 2:
+Input Format:  N = 7, nums[] = {2,2,1,1,1,2,2}
+
+Result: 2
+
+Explanation: After counting the number of times each element appears and comparing it with half of array size, we get 2 as result.
+
+Example 3:
+Input Format:  N = 10, nums[] = {4,4,2,4,3,4,4,3,2,4}
+
+Result: 4
+*/
 func majorityElementInArray(arr []int) int {
 	count := 0
 	var ele *int
@@ -133,4 +161,164 @@ func majorityElementInArray(arr []int) int {
 		count--
 	}
 	return *ele
+}
+
+/*
+Kadane’s Algorithm : Maximum Subarray Sum in an Array
+Problem Statement: Given an integer array arr, find the contiguous subarray (containing at least one number) which
+has the largest sum and returns its sum and prints the subarray.
+Example 1:
+
+Input: arr = [-2,1,-3,4,-1,2,1,-5,4]
+
+Output: 6
+
+Explanation: [4,-1,2,1] has the largest sum = 6.
+
+Examples 2:
+
+Input: arr = [1]
+
+Output: 1
+
+Explanation: Array has only one element and which is giving positive sum of 1.
+*/
+func maxSubArraySum(arr []int) int {
+	sum, maxSum := 0, math.MinInt
+
+	for i := 0; i < len(arr); i++ {
+		sum = sum + arr[i]
+		if sum > maxSum {
+			maxSum = sum
+		}
+		if sum < 0 {
+			sum = 0
+		}
+	}
+
+	return maxSum
+}
+
+/*
+Stock Buy And Sell
+Problem Statement: You are given an array of prices where prices[i] is the price of a given stock on an ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and
+sell on day 5 (price = 6), profit = 6-1 = 5.
+
+Note: That buying on day 2 and selling on day 1
+is not allowed because you must buy before
+you sell.
+
+Example 2:
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are
+done and the max profit = 0.
+*/
+func stockBuyNSellProblem(arr []int) int {
+	maxProfit, bDay := 0, arr[0]
+
+	for i := 1; i < len(arr); i++ {
+		if arr[i] < bDay {
+			bDay = arr[i]
+			continue
+		}
+		if arr[i] > bDay && arr[i]-bDay > maxProfit {
+			maxProfit = arr[i] - bDay
+		}
+	}
+
+	return maxProfit
+}
+
+/*
+Rearrange Array Elements by Sign
+Variety-1
+
+Problem Statement:
+
+There’s an array ‘A’ of size ‘N’ with an equal number of positive and negative elements. Without altering the relative order of positive and negative elements, you must return an array of alternately positive and negative values.
+
+Note: Start the array with positive elements.
+
+Example 1:
+
+Input:
+arr[] = {1,2,-4,-5}, N = 4
+Output:
+1 -4 2 -5
+
+Explanation:
+
+Positive elements = 1,2
+Negative elements = -4,-5
+To maintain relative ordering, 1 must occur before 2, and -4 must occur before -5.
+
+Example 2:
+Input:
+arr[] = {1,2,-3,-1,-2,-3}, N = 6
+Output:
+1 -3 2 -1 3 -2
+Explanation:
+
+Positive elements = 1,2,3
+Negative elements = -3,-1,-2
+To maintain relative ordering, 1 must occur before 2, and 2 must occur before 3.
+Also, -3 should come before -1, and -1 should come before -2.
+*/
+func rearrangeArrayBySign(arr []int) {
+	l, a, b := len(arr), 0, 0
+	arr1, arr2 := make([]int, l/2), make([]int, l/2)
+
+	for i := 0; i < l; i++ {
+		if arr[i] < 0 {
+			arr2[b] = arr[i]
+			b++
+			continue
+		}
+
+		arr1[a] = arr[i]
+		a++
+	}
+	a = 0
+	for i := 0; i < l/2; i++ {
+		arr[a] = arr1[i]
+		arr[a+1] = arr2[i]
+		a = a + 2
+	}
+}
+
+func nextPermutation(nums []int) {
+	l := len(nums)
+	for i := l - 2; i >= 0; i-- {
+		// checking for last number taht is no in sort order
+		if nums[i] >= nums[i+1] {
+			continue
+		}
+
+		j := l - 1
+		// find number just greater than our unsorted number and replace it
+		for j > i {
+			if nums[j] > nums[i] {
+				nums[j], nums[i] = nums[i], nums[j]
+				break
+			}
+			j--
+		}
+		//  now every thing is sorted, reverse all element prior to unsorted one to get our result
+		for k := 0; k < (l-1-i)/2; k++ {
+			nums[i+k+1], nums[l-k-1] = nums[l-k-1], nums[i+k+1]
+		}
+		return
+	}
+	// handle edge case for last permutation combination in order
+	sort.Ints(nums)
 }
