@@ -48,4 +48,43 @@ func ArrayProblems() {
 
 	arr = []int{100, 200, 1, 3, 2, 4}
 	fmt.Printf("Longest Consecutive Sequence in array: %v is: %d\n", []int{100, 200, 1, 3, 2, 4}, longestConsecutiveSequence(arr))
+
+	arr = []int{7, 1, 5, 3, 6, 4}
+	fmt.Printf("Longest Consecutive Sequence in array: %v is: %d\n", arr, longestConsecutiveSequenceOpt(arr))
+
+	arr = []int{100, 200, 1, 3, 2, 4}
+	fmt.Printf("Longest Consecutive Sequence in array: %v is: %d\n", arr, longestConsecutiveSequenceOpt(arr))
+
+	matrix := [][]int{{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}}
+	setMatrixZero(matrix)
+	fmt.Printf("matrix before zero: %v and after zero replacement : %v \n", [][]int{{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}}, matrix)
+
+	matrix = [][]int{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}}
+	setMatrixZero(matrix)
+	fmt.Printf("matrix before zero: %v and after zero replacement : %v \n", [][]int{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}}, matrix)
+
+	matrix = [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+	fmt.Println("matrix before rotate: ")
+	printMatrix(matrix)
+	rotateMatrixBy90(matrix)
+	fmt.Println("matrix after rotate: ")
+	printMatrix(matrix)
+
+	matrix = [][]int{{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}}
+	fmt.Println("matrix before rotate: ")
+	printMatrix(matrix)
+	rotateMatrixBy90Opt(matrix)
+	fmt.Println("matrix after rotate: ")
+	printMatrix(matrix)
+}
+
+func printMatrix(matrix [][]int) {
+	fmt.Println()
+	for _, v := range matrix {
+		for _, ele := range v {
+			fmt.Print(ele, "\t")
+		}
+		fmt.Println()
+	}
+	fmt.Println()
 }

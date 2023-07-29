@@ -413,3 +413,132 @@ func longestConsecutiveSequence(arr []int) int {
 
 	return ans + 1
 }
+
+func longestConsecutiveSequenceOpt(arr []int) int {
+	ans, count := 0, 0
+	m := make(map[int]bool)
+	for _, v := range arr {
+		m[v] = true
+	}
+
+	for k := range m {
+		count = 1
+		i := k - 1
+		for m[i] {
+			count++
+			delete(m, i)
+			i--
+		}
+		i = k + 1
+		for m[i] {
+			count++
+			delete(m, i)
+			i++
+		}
+		if count > ans {
+			ans = count
+		}
+	}
+
+	return ans
+}
+
+/*
+Set Matrix Zeroes
+
+Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+
+You must do it in place.
+
+Example 1:
+
+Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
+Output: [[1,0,1],[0,0,0],[1,0,1]]
+Example 2:
+
+Input: matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+*/
+func setMatrixZero(matrix [][]int) {
+	zeroMatrix := [][]int{}
+
+	for i, row := range matrix {
+		for j, col := range row {
+			if col == 0 {
+				zeroMatrix = append(zeroMatrix, []int{i, j})
+			}
+		}
+	}
+	row, col := len(matrix), len(matrix[0])
+	for _, v := range zeroMatrix {
+		for i := 0; i < col; i++ {
+			matrix[v[0]][i] = 0
+		}
+		for j := 0; j < row; j++ {
+			matrix[j][v[1]] = 0
+		}
+	}
+}
+
+/*
+Rotate Image by 90 degree
+Problem Statement: Given a matrix, your task is to rotate the matrix 90 degrees clockwise.
+
+Example 1:
+
+Input: [[1,2,3],[4,5,6],[7,8,9]]
+
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+
+Explanation: Rotate the matrix simply by 90 degree clockwise and return the matrix.
+
+Example 2:
+
+Input: [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
+
+Output:[[15,13,2,5],[14,3,4,1],[12,6,8,9],[16,7,10,11]]
+
+Explanation: Rotate the matrix simply by 90 degree clockwise and return the matrix
+*/
+func rotateMatrixBy90(matrix [][]int) {
+	currentEle, ele, nextRow, nextCol, l := 0, 0, 0, 0, len(matrix)
+
+	for i := 0; i < l-1; i++ {
+		for j := i; j < l-1-i; j++ {
+			currentEle = matrix[i][j]
+			nextRow = j
+			nextCol = l - 1 - i
+			ele = matrix[nextRow][nextCol]
+			matrix[nextRow][nextCol] = currentEle
+
+			currentEle = ele
+			nextRow, nextCol = nextCol, l-1-nextRow
+			ele = matrix[nextRow][nextCol]
+			matrix[nextRow][nextCol] = currentEle
+
+			currentEle = ele
+			nextRow, nextCol = nextCol, l-1-nextRow
+			ele = matrix[nextRow][nextCol]
+			matrix[nextRow][nextCol] = currentEle
+
+			currentEle = ele
+			nextRow, nextCol = nextCol, l-1-nextRow
+			matrix[nextRow][nextCol] = currentEle
+		}
+	}
+}
+
+func rotateMatrixBy90Opt(matrix [][]int) {
+	l := len(matrix)
+	for i := 0; i < l; i++ {
+		for j := i; j < l; j++ {
+			matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+		}
+	}
+	printMatrix(matrix)
+	for i := 0; i < l; i++ {
+		for j := 0; j < l/2; j++ {
+			matrix[i][j], matrix[i][l-1-j] = matrix[i][l-1-j], matrix[i][j]
+		}
+	}
+}
