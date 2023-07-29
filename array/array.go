@@ -39,4 +39,13 @@ func ArrayProblems() {
 	arr = []int{2, 1, 5, 4, 3, 0, 0}
 	nextPermutation(arr)
 	fmt.Printf("Next Permutation of array: %v is: %v:\n", []int{2, 1, 5, 4, 3, 0, 0}, arr)
+
+	arr = []int{7, 1, 5, 3, 6, 4}
+	fmt.Printf("Leader in array: %v is: %v\n", arr, leaderInArray(arr))
+
+	arr = []int{7, 1, 5, 3, 6, 4}
+	fmt.Printf("Longest Consecutive Sequence in array: %v is: %d\n", []int{7, 1, 5, 3, 6, 4}, longestConsecutiveSequence(arr))
+
+	arr = []int{100, 200, 1, 3, 2, 4}
+	fmt.Printf("Longest Consecutive Sequence in array: %v is: %d\n", []int{100, 200, 1, 3, 2, 4}, longestConsecutiveSequence(arr))
 }

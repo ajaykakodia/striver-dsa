@@ -339,3 +339,77 @@ func nextPermutation(nums []int) {
 	// handle edge case for last permutation combination in order
 	sort.Ints(nums)
 }
+
+/*
+Leaders in an Array
+Problem Statement: Given an array, print all the elements which are leaders. A Leader is an element that is greater than all of the elements on its right side in the array.
+
+Example 1:
+Input: [4, 7, 1, 0]
+Output: 7 1 0
+
+Explanation: Rightmost element is always a leader. 7 and 1 are greater than the elements in their right side.
+
+Example 2:
+Input: [10, 22, 12, 3, 0, 6]
+Output: 22 12 6
+
+Explanation: 6 is a leader. In addition to that, 12 is greater than all the elements in its right side (3, 0, 6), also 22 is greater than 12, 3, 0, 6.
+*/
+func leaderInArray(arr []int) []int {
+	leader := []int{}
+	l := len(arr)
+	if l == 0 {
+		return leader
+	}
+
+	lastLeader := arr[l-1]
+	leader = append(leader, lastLeader)
+
+	for i := l - 2; i >= 0; i-- {
+		if arr[i] > lastLeader {
+			leader = append(leader, arr[i])
+			lastLeader = arr[i]
+		}
+	}
+
+	return leader
+}
+
+/*
+Longest Consecutive Sequence in an Array
+Problem Statement: You are given an array of ‘N’ integers. You need to find the length of the longest sequence which contains the consecutive elements.
+
+Example 1:
+
+Input: [100, 200, 1, 3, 2, 4]
+Output: 4
+
+Explanation: The longest consecutive subsequence is 1, 2, 3, and 4.
+
+Input: [3, 8, 5, 7, 6]
+Output: 4
+
+Explanation: The longest consecutive subsequence is 5, 6, 7, and 8.
+*/
+func longestConsecutiveSequence(arr []int) int {
+	ans, count := 0, 0
+	sort.Ints(arr)
+
+	for i := 1; i < len(arr); i++ {
+		if arr[i-1]+1 == arr[i] {
+			count++
+			continue
+		}
+		if count > ans {
+			ans = count
+		}
+		count = 0
+	}
+
+	if count > ans {
+		ans = count
+	}
+
+	return ans + 1
+}
