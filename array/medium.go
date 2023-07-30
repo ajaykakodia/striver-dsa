@@ -1,6 +1,7 @@
 package array
 
 import (
+	"fmt"
 	"math"
 	"sort"
 )
@@ -541,4 +542,52 @@ func rotateMatrixBy90Opt(matrix [][]int) {
 			matrix[i][j], matrix[i][l-1-j] = matrix[i][l-1-j], matrix[i][j]
 		}
 	}
+}
+
+/*
+Spiral Traversal of Matrix
+Problem Statement: Given a Matrix, print the given matrix in spiral order.
+Example 1:
+Input: Matrix[][] = { { 1, 2, 3, 4 },
+
+		      { 5, 6, 7, 8 },
+		      { 9, 10, 11, 12 },
+	              { 13, 14, 15, 16 } }
+
+Outhput: 1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10.
+Explanation: The output of matrix in spiral form.
+
+Example 2:
+Input: Matrix[][] = { { 1, 2, 3 },
+
+	              { 4, 5, 6 },
+		      { 7, 8, 9 } }
+
+Output: 1, 2, 3, 6, 9, 8, 7, 4, 5.
+Explanation: The output of matrix in spiral form.
+*/
+func spiralBindingTraversalArray(matrix [][]int) {
+
+	i, j := len(matrix), len(matrix[0])
+	top, right, bottom, left := 0, j-1, i-1, 0
+
+	for top <= bottom && left <= right {
+		for k := top; k <= right; k++ {
+			fmt.Print(matrix[top][k], "  ")
+		}
+		top++
+		for k := top; k <= bottom; k++ {
+			fmt.Print(matrix[k][bottom], "  ")
+		}
+		right--
+		for k := right; k >= left; k-- {
+			fmt.Print(matrix[bottom][k], "  ")
+		}
+		bottom--
+		for k := bottom; k >= top; k-- {
+			fmt.Print(matrix[k][left], "  ")
+		}
+		left++
+	}
+	fmt.Println()
 }

@@ -76,6 +76,8 @@ func ArrayProblems() {
 	rotateMatrixBy90Opt(matrix)
 	fmt.Println("matrix after rotate: ")
 	printMatrix(matrix)
+	matrix = [][]int{{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}}
+	spiralBindingTraversalArray(matrix)
 }
 
 func printMatrix(matrix [][]int) {
