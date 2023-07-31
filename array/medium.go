@@ -577,17 +577,42 @@ func spiralBindingTraversalArray(matrix [][]int) {
 		}
 		top++
 		for k := top; k <= bottom; k++ {
-			fmt.Print(matrix[k][bottom], "  ")
+			fmt.Print(matrix[k][right], "  ")
 		}
 		right--
-		for k := right; k >= left; k-- {
-			fmt.Print(matrix[bottom][k], "  ")
+		// For moving right to left.
+		if top <= bottom {
+			for k := right; k >= left; k-- {
+				fmt.Print(matrix[bottom][k], "  ")
+			}
+			bottom--
 		}
-		bottom--
-		for k := bottom; k >= top; k-- {
-			fmt.Print(matrix[k][left], "  ")
+		// For moving bottom to top.
+		if left <= right {
+			for k := bottom; k >= top; k-- {
+				fmt.Print(matrix[k][left], "  ")
+			}
+			left++
 		}
-		left++
 	}
 	fmt.Println()
+}
+
+func countSubArraySumToK(arr []int, target int) int {
+	count := 0
+	sum := 0
+	m := make(map[int]int)
+	//m[0] = 1
+	for i := 0; i < len(arr); i++ {
+		sum = sum + arr[i]
+		if sum == target {
+			count++
+		}
+		if v, ok := m[sum-target]; ok {
+			count = count + v
+		}
+		m[sum] = m[sum] + 1
+	}
+
+	return count
 }

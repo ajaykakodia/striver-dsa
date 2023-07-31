@@ -76,8 +76,14 @@ func ArrayProblems() {
 	rotateMatrixBy90Opt(matrix)
 	fmt.Println("matrix after rotate: ")
 	printMatrix(matrix)
-	matrix = [][]int{{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}}
+	matrix = [][]int{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}}
 	spiralBindingTraversalArray(matrix)
+
+	arr = []int{1, 2, 3, -3, 1, 1, 1, 4, 2, -3}
+	fmt.Printf("Count Subarray sum Equals %d of array: %v is: %d\n", 6, arr, countSubArraySumToK(arr, 6))
+
+	arr = []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+	fmt.Printf("Count Subarray sum Equals %d of array: %v is: %d\n", 6, arr, countSubArraySumToK(arr, 0))
 }
 
 func printMatrix(matrix [][]int) {
