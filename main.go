@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/ajaykakodia/striver-dsa/array"
+	binarysearch "github.com/ajaykakodia/striver-dsa/binary-search"
 )
 
 /*
@@ -33,5 +33,8 @@ func main() {
 	// sorting()
 
 	// step 3
-	array.ArrayProblems()
+	//array.ArrayProblems()
+
+	// step 4
+	binarysearch.BS()
 }
