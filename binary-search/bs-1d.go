@@ -102,3 +102,22 @@ func upperBoundOfElement(arr []int, k int) int {
 
 	return ans
 }
+
+func searchInsertPosition(arr []int, ele int) int {
+	ans := len(arr)
+	start, end := 0, len(arr)-1
+	mid := 0
+
+	for start <= end {
+		mid = (start + end) / 2
+
+		if arr[mid] >= ele {
+			ans = mid
+			end = mid - 1
+			continue
+		}
+		start = mid + 1
+	}
+
+	return ans
+}

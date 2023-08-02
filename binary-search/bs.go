@@ -17,5 +17,10 @@ func BS() {
 	fmt.Printf("Lower bound of Element %d in array: %v is %d \n", 10, arr, lowerBoundOfElement(arr, 10))
 
 	arr = []int{1, 2, 2, 3}
-	fmt.Printf("Upper bound of Element %d in array: %v is %d \n", 10, arr, upperBoundOfElement(arr, 2))
+	fmt.Printf("Upper bound of Element %d in array: %v is %d \n", 2, arr, upperBoundOfElement(arr, 2))
+	arr = []int{5, 8, 9, 12, 14, 17, 19, 21}
+	fmt.Printf("Insert Position of Element %d in array: %v is %d \n", 15, arr, searchInsertPosition(arr, 15))
+
+	arr = []int{1, 2, 4, 7}
+	fmt.Printf("Insert Position of Element %d in array: %v is %d \n", 10, arr, searchInsertPosition(arr, 10))
 }
