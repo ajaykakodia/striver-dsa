@@ -23,4 +23,15 @@ func BS() {
 
 	arr = []int{1, 2, 4, 7}
 	fmt.Printf("Insert Position of Element %d in array: %v is %d \n", 10, arr, searchInsertPosition(arr, 10))
+
+	arr = []int{3, 4, 4, 7, 8, 10}
+	f, c := floorNCeil(arr, 5)
+	fmt.Printf("Floor and Ceil of Element %d in array: %v is %d, %d \n", 5, arr, f, c)
+
+	f, c = floorNCeil(arr, 8)
+	fmt.Printf("Floor and Ceil of Element %d in array: %v is %d, %d \n", 8, arr, f, c)
+
+	arr = []int{3, 4, 13, 13, 13, 20, 40}
+	fmt.Printf("Last Occurrence of Element %d in array: %v is %d \n", 13, arr, lastOccurrenceOfKey(arr, 13))
+
 }
