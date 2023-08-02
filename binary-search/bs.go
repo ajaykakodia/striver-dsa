@@ -15,4 +15,7 @@ func BS() {
 
 	arr = []int{3, 4, 6, 7, 9, 12, 16, 17}
 	fmt.Printf("Lower bound of Element %d in array: %v is %d \n", 10, arr, lowerBoundOfElement(arr, 10))
+
+	arr = []int{1, 2, 2, 3}
+	fmt.Printf("Upper bound of Element %d in array: %v is %d \n", 10, arr, upperBoundOfElement(arr, 2))
 }

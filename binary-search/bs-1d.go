@@ -71,3 +71,34 @@ func lowerBoundOfElement(arr []int, k int) int {
 
 	return ans
 }
+
+/*
+Implement Upper Bound
+Problem Statement: Given a sorted array of N integers and an integer x, write a program to find the upper bound of x.
+
+Example 1:
+Input Format: N = 4, arr[] = {1,2,2,3}, x = 2
+Result: 3
+Explanation: Index 3 is the smallest index such that arr[3] > x.
+
+Example 2:
+Input Format: N = 6, arr[] = {3,5,8,9,15,19}, x = 9
+Result: 4
+Explanation: Index 4 is the smallest index such that arr[4] > x.
+*/
+func upperBoundOfElement(arr []int, k int) int {
+	l := len(arr)
+	ans := k
+	start, end, mid := 0, l-1, 0
+	for start <= end {
+		mid = (start + end) / 2
+		if arr[mid] > k {
+			ans = mid
+			end = mid - 1
+			continue
+		}
+		start = mid + 1
+	}
+
+	return ans
+}
