@@ -34,4 +34,8 @@ func BS() {
 	arr = []int{3, 4, 13, 13, 13, 20, 40}
 	fmt.Printf("Last Occurrence of Element %d in array: %v is %d \n", 13, arr, lastOccurrenceOfKey(arr, 13))
 
+	fmt.Printf("Total count of Element %d in array: %v is %d \n", 13, arr, countOccurrenceOfKey(arr, 13))
+
+	arr = []int{2, 2, 3, 3, 3, 3, 4}
+	fmt.Printf("Total count of Element %d in array: %v is %d \n", 3, arr, countOccurrenceOfKey(arr, 3))
 }

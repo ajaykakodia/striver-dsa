@@ -212,3 +212,18 @@ func lastOccurrenceOfKey(nums []int, target int) int {
 
 	return ans
 }
+
+func countOccurrenceOfKey(nums []int, target int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+	start, end := 0, len(nums)-1
+	mid := (start + end) / 2
+	if nums[mid] == target {
+		return 1 + countOccurrenceOfKey(nums[:mid], target) + countOccurrenceOfKey(nums[mid+1:], target)
+	}
+	if nums[mid] > target {
+		return countOccurrenceOfKey(nums[:mid], target)
+	}
+	return countOccurrenceOfKey(nums[mid+1:], target)
+}
