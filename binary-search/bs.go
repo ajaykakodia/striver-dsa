@@ -38,4 +38,13 @@ func BS() {
 
 	arr = []int{2, 2, 3, 3, 3, 3, 4}
 	fmt.Printf("Total count of Element %d in array: %v is %d \n", 3, arr, countOccurrenceOfKey(arr, 3))
+
+	arr = []int{4, 5, 6, 7, 0, 1, 2, 3}
+	fmt.Printf("Element %d is existed in rotated array: %v at %d index \n", 0, arr, searchElementInRotatedArray(arr, 0))
+
+	arr = []int{4, 5, 6, 7, 0, 1, 2}
+	fmt.Printf("Element %d is existed in rotated array: %v at %d index \n", 3, arr, searchElementInRotatedArray(arr, 3))
+
+	arr = []int{4, 5, 6, 7, 8, 0, 1, 2, 3}
+	fmt.Printf("Element %d is existed in rotated array: %v at %d index \n", 6, arr, searchElementInRotatedArray(arr, 6))
 }
