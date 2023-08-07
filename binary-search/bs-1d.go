@@ -335,3 +335,49 @@ func searchElementInArrayWithDuplicateValue(arr []int, target int) bool {
 
 	return false
 }
+
+/*
+Minimum in Rotated Sorted Array
+Problem Statement: Given an integer array arr of size N, sorted in ascending order (with distinct values). Now the array is rotated between 1 to N times which is unknown. Find the minimum element in the array.
+
+Example 1:
+Input Format: arr = [4,5,6,7,0,1,2,3]
+Result: 0
+Explanation: Here, the element 0 is the minimum element in the array.
+
+Example 2:
+Input Format: arr = [3,4,5,1,2]
+Result: 1
+Explanation: Here, the element 1 is the minimum element in the array.
+
+
+*/
+func minimumInRotatedSortedArray(nums []int) int {
+	lowIndex, highIndex, mid, ans := 0, len(nums)-1, 0, 0
+
+	for lowIndex <= highIndex {
+		mid = (lowIndex + highIndex) / 2
+
+		if nums[lowIndex] <= nums[highIndex] {
+			if nums[ans] > nums[lowIndex] {
+				ans = lowIndex
+			}
+			break
+		}
+
+		if nums[lowIndex] <= nums[mid] {
+			if nums[ans] > nums[lowIndex] {
+				ans = lowIndex
+			}
+
+			lowIndex = mid + 1
+			continue
+		}
+		if nums[ans] > nums[mid] {
+			ans = mid
+		}
+		highIndex = mid - 1
+	}
+
+	return nums[ans]
+}
