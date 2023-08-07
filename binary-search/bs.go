@@ -47,4 +47,7 @@ func BS() {
 
 	arr = []int{4, 5, 6, 7, 8, 0, 1, 2, 3}
 	fmt.Printf("Element %d is existed in rotated array: %v at %d index \n", 6, arr, searchElementInRotatedArray(arr, 6))
+
+	arr = []int{7, 8, 1, 2, 3, 3, 3, 4, 5, 6}
+	fmt.Printf("Element %d is existed in rotated array: %v - %t \n", 3, arr, searchElementInArrayWithDuplicateValue(arr, 3))
 }
