@@ -59,4 +59,7 @@ func BS() {
 
 	arr = []int{3, 4, 5, 1, 2}
 	fmt.Printf("Array rotated %d times in rotated sorted array: %v \n", arr, howManyTimesArrayIsRotated(arr))
+
+	arr = []int{1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 7, 8, 8}
+	fmt.Printf("Element %d is single in sorted array: %v \n", searchSingleElementInArray(arr), arr)
 }

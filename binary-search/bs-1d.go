@@ -426,3 +426,48 @@ func howManyTimesArrayIsRotated(nums []int) int {
 
 	return ans
 }
+
+/*
+Search Single Element in a sorted array
+Problem Statement: Given an array of N integers. Every number in the array except one appears twice. Find the single number in the array.
+
+Example 1:
+Input Format: arr[] = {1,1,2,2,3,3,4,5,5,6,6}
+Result: 4
+Explanation: Only the number 4 appears once in the array.
+
+Example 2:
+
+Input Format: arr[] = {1,1,3,5,5}
+Result: 3
+Explanation: Only the number 3 appears once in the array.
+
+*/
+func searchSingleElementInArray(nums []int) int {
+	l := len(nums)
+	low, high, mid := 0, l-1, 0
+
+	for low <= high {
+		mid = (low + high) / 2
+		if (mid != 0 && nums[mid] != nums[mid-1]) && (mid != l-1 && nums[mid] != nums[mid+1]) {
+			return nums[mid]
+		}
+
+		if mid != 0 && nums[mid] == nums[mid-1] {
+			if (mid-1-low)&1 == 0 {
+				low = mid + 1
+			} else {
+				high = mid - 2
+			}
+			continue
+		}
+
+		if (high-mid-1)&1 == 0 {
+			high = mid - 1
+			continue
+		}
+		low = mid + 2
+	}
+
+	return nums[mid]
+}
