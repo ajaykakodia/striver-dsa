@@ -40,17 +40,23 @@ func BS() {
 	fmt.Printf("Total count of Element %d in array: %v is %d \n", 3, arr, countOccurrenceOfKey(arr, 3))
 
 	arr = []int{4, 5, 6, 7, 0, 1, 2, 3}
-	fmt.Printf("Element %d is existed in rotated array: %v at %d index \n", 0, arr, searchElementInRotatedArray(arr, 0))
+	fmt.Printf("Element %d is existed in rotated sorted array: %v at %d index \n", 0, arr, searchElementInRotatedArray(arr, 0))
 
 	arr = []int{4, 5, 6, 7, 0, 1, 2}
-	fmt.Printf("Element %d is existed in rotated array: %v at %d index \n", 3, arr, searchElementInRotatedArray(arr, 3))
+	fmt.Printf("Element %d is existed in rotated sorted array: %v at %d index \n", 3, arr, searchElementInRotatedArray(arr, 3))
 
 	arr = []int{4, 5, 6, 7, 8, 0, 1, 2, 3}
-	fmt.Printf("Element %d is existed in rotated array: %v at %d index \n", 6, arr, searchElementInRotatedArray(arr, 6))
+	fmt.Printf("Element %d is existed in rotated sorted array: %v at %d index \n", 6, arr, searchElementInRotatedArray(arr, 6))
 
 	arr = []int{7, 8, 1, 2, 3, 3, 3, 4, 5, 6}
-	fmt.Printf("Element %d is existed in rotated array: %v - %t \n", 3, arr, searchElementInArrayWithDuplicateValue(arr, 3))
+	fmt.Printf("Element %d is existed in rotated sorted array: %v - %t \n", 3, arr, searchElementInArrayWithDuplicateValue(arr, 3))
 
 	arr = []int{4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3}
-	fmt.Printf("Element %d is minimum in rotated array: %v \n", arr, minimumInRotatedSortedArray(arr))
+	fmt.Printf("Element %d is minimum in rotated sorted array: %v \n", arr, minimumInRotatedSortedArray(arr))
+
+	arr = []int{4, 5, 6, 7, 0, 1, 2, 3}
+	fmt.Printf("Array rotated %d times in rotated sorted array: %v \n", arr, howManyTimesArrayIsRotated(arr))
+
+	arr = []int{3, 4, 5, 1, 2}
+	fmt.Printf("Array rotated %d times in rotated sorted array: %v \n", arr, howManyTimesArrayIsRotated(arr))
 }
