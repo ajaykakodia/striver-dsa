@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	binarysearch "github.com/ajaykakodia/striver-dsa/binary-search"
+	"github.com/ajaykakodia/striver-dsa/str"
 )
 
 /*
@@ -36,5 +36,8 @@ func main() {
 	//array.ArrayProblems()
 
 	// step 4
-	binarysearch.BS()
+	//binarysearch.BS()
+
+	//step 5
+	str.StringProblems()
 }
