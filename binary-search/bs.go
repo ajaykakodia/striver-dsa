@@ -62,4 +62,10 @@ func BS() {
 
 	arr = []int{1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 7, 7, 8, 8}
 	fmt.Printf("Element %d is single in sorted array: %v \n", searchSingleElementInArray(arr), arr)
+
+	arr = []int{5, 4, 3, 2, 1}
+	fmt.Printf("Element at %d index is peak element in array: %v \n", peakElementInArray(arr), arr)
+
+	arr = []int{1, 10, 13, 7, 6, 5, 4, 3, 2, 1, 0}
+	fmt.Printf("Element at %d index is peak element in array: %v \n", peakElementInArray(arr), arr)
 }
