@@ -27,3 +27,26 @@ func isStringAnagram(str string) bool {
 
 	return true
 }
+
+func isTwoStringsAreAnagram(str1, str2 string) bool {
+	m := make(map[rune]int)
+	if len(str1) != len(str2) {
+		return false
+	}
+
+	for _, v := range str1 {
+		m[v]++
+	}
+
+	for _, v := range str2 {
+		if m[v] == 0 {
+			return false
+		}
+		m[v]--
+		if m[v] == 0 {
+			delete(m, v)
+		}
+	}
+
+	return !(len(m) > 0)
+}
