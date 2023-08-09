@@ -14,5 +14,16 @@ func reverseWordInString(s string) string {
 			reverseString = reverseString + " " + words[i]
 		}
 	}
-	return reverseString
+	return strings.TrimLeft(reverseString, " ")
+}
+
+func isStringAnagram(str string) bool {
+	l := len(str)
+	for i := 0; i < l/2; i++ {
+		if str[i] != str[l-1-i] {
+			return false
+		}
+	}
+
+	return true
 }

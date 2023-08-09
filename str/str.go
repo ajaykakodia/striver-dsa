@@ -7,4 +7,6 @@ func StringProblems() {
 	fmt.Println(reverseWordInString("the sky is blue"))
 	fmt.Println(reverseWordInString("  hello world  "))
 	fmt.Println(reverseWordInString("a good   example"))
+
+	fmt.Printf("%s is anagram: %t\n", "ragar", isStringAnagram("ragar"))
 }
